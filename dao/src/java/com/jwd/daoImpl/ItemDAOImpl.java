@@ -27,44 +27,39 @@ public class ItemDAOImpl implements ItemDAO {
 
     private Document doc;
 
-
-    public List<List<String>> getInformation(String className) {
-        List<List<String>> objectsInformation = new ArrayList<>();
-        NodeList elementList = doc.getElementsByTagName(className);
-        for (int i = 0; i < elementList.getLength(); i++) {
-            Node p = elementList.item(i);
-            if (p.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element) p;
-                String id = element.getAttribute("id");
-                NodeList nameList = element.getChildNodes();
-                List<String> currentObjectInfo = new ArrayList<>();
-                for (int j = 0; j < nameList.getLength(); j++) {
-                    Node n = nameList.item(j);
-                    if (n.getNodeType() == Node.ELEMENT_NODE) {
-                        Element name = (Element) n;
-//                        System.out.println(className + " " + id + ":" + name.getTagName() + "=" + name.getTextContent());
-                        currentObjectInfo.add(name.getTextContent());
-                    }
-                }
-                objectsInformation.add(currentObjectInfo);
-            }
-        }
-        return objectsInformation;
-    }
-
-
-    @Override
-    public List<List<String>> getItems(String className) {
+    /**
+     * @param className - название класса, объекты которого необходимо найти в xml файле
+     * @return Список объектов искомого класса
+     */
+    private List<List<String>> getItems(String className) {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             doc = builder.parse(DATABASE_PATH);
-            return getInformation(className);
+            List<List<String>> objectsInformation = new ArrayList<>();
+            NodeList elementList = doc.getElementsByTagName(className);
+            for (int i = 0; i < elementList.getLength(); i++) {
+                Node p = elementList.item(i);
+                if (p.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) p;
+                    String id = element.getAttribute("id");
+                    NodeList nameList = element.getChildNodes();
+                    List<String> currentObjectInfo = new ArrayList<>();
+                    for (int j = 0; j < nameList.getLength(); j++) {
+                        Node n = nameList.item(j);
+                        if (n.getNodeType() == Node.ELEMENT_NODE) {
+                            Element name = (Element) n;
+                            currentObjectInfo.add(name.getTextContent());
+                        }
+                    }
+                    objectsInformation.add(currentObjectInfo);
+                }
+            }
+            return objectsInformation;
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-
 
 
         return null;

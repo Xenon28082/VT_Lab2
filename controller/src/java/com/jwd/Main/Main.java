@@ -1,6 +1,7 @@
 package com.jwd.Main;
 
 import Comparators.FridgePriceComparator;
+import Comparators.ItemPriceComparator;
 import Comparators.KettlePriceComparator;
 import Comparators.TVPriceComparator;
 import com.jwd.Service.ItemService;
@@ -29,9 +30,9 @@ public class Main {
         List<Fridge> fridges = itemService.getFridges();
         List<TV> tvs = itemService.getTVs();
 
-        kettles.sort(new KettlePriceComparator());
-        fridges.sort(new FridgePriceComparator());
-        tvs.sort(new TVPriceComparator());
+        kettles.sort(new ItemPriceComparator());
+        fridges.sort(new ItemPriceComparator());
+        tvs.sort(new ItemPriceComparator());
 
         System.out.println("Kettles:");
         System.out.println(kettles);

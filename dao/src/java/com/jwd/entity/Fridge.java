@@ -3,27 +3,42 @@ package com.jwd.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fridge {
+/**
+ * Класс холодильников с полями <b>construction</b>, <b>height</b>, <b>width</b>.
+ * @author savva
+ */
+public class Fridge extends Item{
+    /**Поле тип конструкции*/
     private String construction;
-    private String deployment;
+    /**Поле высота*/
     private int height;
+    /**Поле ширина*/
     private int width;
-    private float price;
 
-
+    /**
+     * @param fridgesInfo - список информации о холодильниках
+     * @return возвращает список объектов типа Fridge
+     */
     public static List<Fridge> createInstances(List<List<String>> fridgesInfo) {
         List<Fridge> fridges = new ArrayList<>();
         for (List<String> currentFridgeInfo :
                 fridgesInfo) {
-            Fridge newfridge = new Fridge(currentFridgeInfo.get(0), currentFridgeInfo.get(1), Integer.valueOf(currentFridgeInfo.get(2)), Integer.valueOf(currentFridgeInfo.get(3)), Float.valueOf(currentFridgeInfo.get(4)));
+            Fridge newfridge = new Fridge(currentFridgeInfo.get(0), Integer.valueOf(currentFridgeInfo.get(1)), Integer.valueOf(currentFridgeInfo.get(2)), Float.valueOf(currentFridgeInfo.get(3)), currentFridgeInfo.get(4));
             fridges.add(newfridge);
         }
         return fridges;
     }
 
-    public Fridge(String construction, String deployment, int height, int width, float price) {
+    /**
+     * @param construction - тип конструкции
+     * @param height - высота
+     * @param width - ширина
+     * @param price - цена
+     * @param vendor - производитель
+     */
+    public Fridge(String construction, int height, int width, float price, String vendor) {
+        this.vendor = vendor;
         this.construction = construction;
-        this.deployment = deployment;
         this.height = height;
         this.width = width;
         this.price = price;
@@ -35,14 +50,6 @@ public class Fridge {
 
     public void setConstruction(String construction) {
         this.construction = construction;
-    }
-
-    public String getDeployment() {
-        return deployment;
-    }
-
-    public void setDeployment(String deployment) {
-        this.deployment = deployment;
     }
 
     public int getHeight() {
@@ -61,22 +68,14 @@ public class Fridge {
         this.width = width;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
     @Override
     public String toString() {
         return "Fridge{" +
                 "construction='" + construction + '\'' +
-                ", deployment='" + deployment + '\'' +
                 ", height=" + height +
                 ", width=" + width +
                 ", price=" + price +
+                ", vendor='" + vendor + '\'' +
                 '}';
     }
 }

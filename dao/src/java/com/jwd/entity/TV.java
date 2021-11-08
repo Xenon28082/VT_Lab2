@@ -3,23 +3,43 @@ package com.jwd.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TV {
-    private String type;
-    private float diagonal;
-    private int frequency;
-    private float price;
 
+/**
+ * Класс телевизоров с полями <b>type</b>, <b>diagonal</b>, <b>frequency</b>
+ * @author savva
+ */
+public class TV extends Item{
+    /**Поле тип матрицы*/
+    private String type;
+    /**Поле длина диагонали*/
+    private float diagonal;
+    /**Поле частота обновления экрана*/
+    private int frequency;
+
+
+    /**
+     * @param tvsInfo - список информации о телевизорах
+     * @return возвращает список объектов тиа TV
+     */
     public static List<TV> createInstances(List<List<String>> tvsInfo) {
         List<TV> tvs = new ArrayList<>();
         for (List<String> currentTVInfo :
                 tvsInfo) {
-            TV newTV = new TV(currentTVInfo.get(0), Float.valueOf(currentTVInfo.get(1)), Integer.valueOf(currentTVInfo.get(2)), Float.valueOf(currentTVInfo.get(3)));
+            TV newTV = new TV(currentTVInfo.get(0), Float.valueOf(currentTVInfo.get(1)), Integer.valueOf(currentTVInfo.get(2)), Float.valueOf(currentTVInfo.get(3)), currentTVInfo.get(4));
             tvs.add(newTV);
         }
         return tvs;
     }
 
-    public TV(String type, float diagonal, int frequency, float price) {
+    /**
+     * @param type - тип матрицы
+     * @param diagonal - длина диагонали
+     * @param frequency - частота обновления экрана
+     * @param price - цена
+     * @param vendor - производитель
+     */
+    public TV(String type, float diagonal, int frequency, float price, String vendor) {
+        this.vendor = vendor;
         this.type = type;
         this.diagonal = diagonal;
         this.frequency = frequency;
@@ -50,21 +70,14 @@ public class TV {
         this.frequency = frequency;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
     @Override
     public String toString() {
         return "TV{" +
-                "type='" + type + '\'' +
+                "price=" + price +
+                ", vendor='" + vendor + '\'' +
+                ", type='" + type + '\'' +
                 ", diagonal=" + diagonal +
                 ", frequency=" + frequency +
-                ", price=" + price +
                 '}';
     }
 }

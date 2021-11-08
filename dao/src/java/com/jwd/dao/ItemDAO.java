@@ -8,12 +8,19 @@ import java.util.List;
 
 public interface ItemDAO {
 
-    List<List<String>> getItems(String className);
-
+    /**
+     * @return list of kettles in xml file
+     */
     List<Kettle> getKettles();
 
+    /**
+     * @return list of tvs in xml file
+     */
     List<TV> getTVs();
 
+    /**
+     * @return list of fridges in xml file
+     */
     List<Fridge> getFridges();
 
 }

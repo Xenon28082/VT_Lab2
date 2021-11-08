@@ -5,39 +5,41 @@
     <kettle id = "1">
         <volume>13</volume>
         <compatibility>Gas</compatibility>
-        <grip>Yeah)</grip>
         <price>1234</price>
+        <vendor>Xiaomi</vendor>
     </kettle>
     <kettle id = "2">
         <volume>14</volume>
         <compatibility>Electricity</compatibility>
-        <grip>No(</grip>
         <price>123</price>
+        <vendor>Redmond</vendor>
     </kettle>
     <tv>
         <type>OLED</type>
         <diagonal>21.5</diagonal>
         <frequency>120</frequency>
         <price>1233</price>
+        <vendor>LG</vendor>
     </tv>
     <tv>
         <type>QLED</type>
         <diagonal>121.5</diagonal>
         <frequency>1200</frequency>
-        <price>124</price>
+        <price>12</price>
+        <vendor>Horizont</vendor>
     </tv>
     <fridge>
         <construction>BuildIn</construction>
-        <deployment>Yeah)</deployment>
         <height>200</height>
         <width>75</width>
         <price>1232</price>
+        <vendor>Samsung</vendor>
     </fridge>
     <fridge>
         <construction>BuildOut)</construction>
-        <deployment>No(</deployment>
         <height>2000</height>
         <width>750</width>
         <price>125</price>
+        <vendor>Atlant</vendor>
     </fridge>
 </items>
